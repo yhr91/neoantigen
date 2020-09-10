@@ -3,9 +3,10 @@ import glob
 import numpy as np
 
 # Read in data
-xls_files = glob.glob('../scripts/results/*xls')
+out_name = 'HLA-A03_01'
+xls_files = glob.glob('../scripts/results/'+out_name+'/*xls')
 xls_files = {int(name.split('_')[-1].split('.xls')[0]):name for name in xls_files}
-ID_dict = np.load('../tim_data/ID_dict.npy').item()
+ID_dict = np.load('../tim_data/ID_dict.npy', allow_pickle=True).item()
 
 # Helper functions
 # Given XID get corresponding header
@@ -37,9 +38,12 @@ def add_header_df(df):
 
 # Main script
 all_dfs = []
-for i,f in xls_files.items():
+print("Out: ",out_name)
+
+for i in sorted(xls_files):
     print(i)
+    f = xls_files[i]
     df = pd.read_csv(f, delimiter = '\t', index_col=0, header=1)
     all_dfs.append(add_header_df(df))
 all_dfs_concat = pd.concat(all_dfs, ignore_index=True)
-all_dfs_concat.to_csv('combined.csv')
+all_dfs_concat.to_csv(out_name+'_all.csv')
