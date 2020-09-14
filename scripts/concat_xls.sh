@@ -1,4 +1,7 @@
 #!/bin/bash
+# Script to concatentate output from all processes
+#        SYNTAX: bash concat_xls.sh <ALLELE>
+# SAMPLE SYNTAX: bash concat_xls.sh HLA-A03:01
 
 ALLELE=$1 
 

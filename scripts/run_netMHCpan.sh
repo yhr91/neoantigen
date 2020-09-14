@@ -1,5 +1,7 @@
 #!/bin/bash
 # Script for running netMHCpan in parallel
+#        SYNTAX: ./run_netMHCpan.sh <#PROCESSES> <ALLELE> 
+# SAMPLE SYNTAX: ./run_netMHCpan.sh      55      HLA-A03:01
 
 # Set parameters
 TOT_LEN=2300000*2
